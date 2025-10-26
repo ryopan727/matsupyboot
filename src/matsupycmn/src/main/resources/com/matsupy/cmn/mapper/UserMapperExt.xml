@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.matsupy.cmn.mapper.UserMapperExt">
+  <select id="selUser" resultType="com.matsupy.cmn.entity.UserTbl">
+    SELECT
+        *
+    FROM
+        user_tbl
+    <if test="id != null">
+    WHERE
+        id = #{id}
+    </if>
+  </select>
+
+  <select id="selUserMulti" resultType="com.matsupy.cmn.entity.UserTbl">
+    SELECT
+        *
+    FROM
+        user_tbl
+  </select>
+
+  <select id="selUserMultiLimit" resultType="com.matsupy.cmn.entity.UserTbl">
+    SELECT
+        *
+    FROM
+        user_tbl
+    LIMIT
+        #{selCondEntity.cnt}        
+    OFFSET
+        #{selCondEntity.offset}
+  </select>
+
+</mapper>
