@@ -15,6 +15,7 @@ springbootのよくあるAPI基盤実装
 - API機能のみ（画面なし）
 - DBはpostgresql
 - json形式によるreq/res
+- mavenビルド
 
 ## 内部構成
 
@@ -42,8 +43,10 @@ springbootのよくあるAPI基盤実装
 {
     "result": "1",
     "errInfo": [
-        "errCd": "1",
-        "message": "エラー。"
+       {
+         "msgId": "E001",
+         "message": "エラー。"
+       }
     ]
 }
 ```

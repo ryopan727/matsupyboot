@@ -1,35 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
 
-    <!-- ★ Spring Boot 推奨：プロファイルごとに設定分岐も可能 -->
-
+    <!-- ログ出力先ディレクトリ -->
     <property name="LOG_PATH" value="/var/logs/matsupyapi" />
-    <property name="LOG_FILE" value="${LOG_PATH}/app.log" />
 
-    <!-- コンソール出力 -->
+    <!-- ============================================= -->
+    <!-- コンソール出力設定 -->
+    <!-- ============================================= -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- ファイル出力 -->
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_FILE}</file>
+    <!-- ============================================= -->
+    <!-- app用ファイル出力 -->
+    <!-- ============================================= -->
+    <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/app-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%logger{36}] - %msg%n</pattern>
         </encoder>
     </appender>
 
+    <!-- ============================================= -->
+    <!-- interface用ファイル出力 -->
+    <!-- ============================================= -->
+    <appender name="INTERFACE_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/interface.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/interface-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%logger{36}] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- ============================================= -->
+    <!-- ロガー設定 -->
+    <!-- ============================================= -->
+    <!-- app パッケージ用 -->
+    <logger name="app" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="APP_FILE"/>
+    </logger>
+
+    <!-- interface パッケージ用 -->
+    <logger name="interface" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="INTERFACE_FILE"/>
+    </logger>
+
+    <!-- 外部ライブラリ等のログを抑制 -->
+    <logger name="com.zaxxer.hikari" level="WARN"/>
+
+    <!-- ============================================= -->
     <!-- ルートロガー -->
+    <!-- ============================================= -->
     <root level="INFO">
-        <appender-ref ref="CONSOLE" />
-        <appender-ref ref="FILE" />
+        <appender-ref ref="CONSOLE"/>
     </root>
 
-    <logger name="com.zaxxer.hikari" level="WARN"/>
 </configuration>

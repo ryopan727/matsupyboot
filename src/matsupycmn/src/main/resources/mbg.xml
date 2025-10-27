@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <context id="PostgresContext" targetRuntime="MyBatis3">
+    <context id="PostgresContext" targetRuntime="MyBatis3Simple">
         <!-- JDBC 接続情報 -->
         <jdbcConnection driverClass="org.postgresql.Driver"
                         connectionURL="jdbc:postgresql://192.168.3.47:5432/postgres"
@@ -13,29 +13,24 @@
         </jdbcConnection>
 
         <!-- Java Model -->
-        <javaModelGenerator targetPackage="com.matsupy.cmn.entity" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.matsupy.cmn.entity.gen" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- Mapper Interface -->
-        <sqlMapGenerator targetPackage="com.matsupy.cmn.mapper" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="com.matsupy.cmn.mapper.gen" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- Mapper XML -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.matsupy.cmn.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.matsupy.cmn.mapper.gen" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!-- テーブル設定 -->
-	    <table schema="public" tableName="%"
-	        enableSelectByExample="false"
-	        enableDeleteByExample="false"
-	    	enableUpdateByExample="false"
-	        enableCountByExample="false">
-			<property name="useActualColumnNames" value="false"  />
-			<property name="ignoreQualifiersAtRuntime" value="true" />
-	    </table>
+		<table tableName="user_tbl" domainObjectName="UserTbl">
+		    <property name="mapperName" value="UserTblMapper" />
+		</table>
     </context>
 </generatorConfiguration>
