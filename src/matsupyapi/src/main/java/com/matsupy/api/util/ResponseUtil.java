@@ -44,13 +44,11 @@ public class ResponseUtil {
 		for (ErrMsg errMsg : mc.getErrMsgLst()) {
 			ResponseErrInfo resErrInfo = new ResponseErrInfo();
 
-			String msg = errMsg.getMessage();
-			if (!"".equals(errMsg.getMsgId()) && "".equals(msg)) {
-				// メッセージがすでに入っている場合は変換しない
-				msg = messageSource.getMessage(errMsg.getMsgId(), null, Locale.JAPANESE);
-			}
+			String msgId = errMsg.getMsgId();
+			Object[] prm = errMsg.getPrm();
+			String msg = messageSource.getMessage(msgId, prm, Locale.JAPANESE);
 			resErrInfo.setMessage(msg);
-			resErrInfo.setMsgId(errMsg.getMsgId());
+			resErrInfo.setMsgId(msgId);
 
 			errList.add(resErrInfo);
 		}

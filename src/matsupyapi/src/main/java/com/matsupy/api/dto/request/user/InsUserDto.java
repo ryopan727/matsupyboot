@@ -6,9 +6,9 @@ import lombok.Data;
 
 @Data
 public class InsUserDto {
-	@NotNull(message="E400003 IDを入力せいー")
+	@NotNull(message = "E400002:ID")
 	private final Integer id;
 
-	@NotEmpty(message="E400004 名前を入力せい")
+	@NotEmpty(message = "E400002:名前")
 	private final String name;
 }

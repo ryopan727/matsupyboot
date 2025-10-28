@@ -8,6 +8,9 @@ import lombok.Data;
 public class ErrMsg {
 	/** メッセージID */
 	private String msgId;
-	/** メッセージ */
-	private String message;
+	/** フィールド名 */
+	private String field;
+	/** 埋め込み文字 */
+	private Object[] prm;
+
 }

@@ -28,7 +28,7 @@ public class MatsupyContext {
 	public void setError(HttpStatus status, ResultCd result, String msgId) {
 		this.status = status;
 		this.result = result;
-		ErrMsg errMsg = new ErrMsg(msgId, "");
+		ErrMsg errMsg = new ErrMsg(msgId, "", new Object[0]);
 		this.errMsgLst = List.of(errMsg);
 	}
 

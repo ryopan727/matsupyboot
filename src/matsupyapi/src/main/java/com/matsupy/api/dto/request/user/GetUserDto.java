@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class GetUserDto {
-	@NotEmpty(message = "E40002 IDいれてや")
+	@NotEmpty(message = "E400002:ID")
 	private final String id;
 }

@@ -66,7 +66,7 @@ public class UserController {
 			return responseUtil.createErrResponse(mc);
 		} catch (Throwable e) {
 			e.printStackTrace();
-
+			mc.setError(HttpStatus.INTERNAL_SERVER_ERROR, ResultCd.ERROR, MsgId.MSGE001.getValue());
 			return responseUtil.createErrResponse(mc);
 		} finally {
 

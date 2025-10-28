@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class GetExtUserDto {
 
-	@NotEmpty(message = "E400005 リストは1こ以上にせい")
+	@NotEmpty(message = "E400002:ユーザリスト")
 	@Valid
 	private final List<GetUserDto> userList;
 }

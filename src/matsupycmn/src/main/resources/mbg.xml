@@ -32,5 +32,8 @@
 		<table tableName="user_tbl" domainObjectName="UserTbl">
 		    <property name="mapperName" value="UserTblMapper" />
 		</table>
+		<table tableName="goods" domainObjectName="GoodsTbl">
+		    <property name="mapperName" value="GoodsTblMapper" />
+		</table>
     </context>
 </generatorConfiguration>
